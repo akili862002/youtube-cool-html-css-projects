@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <h1 data-value="HELLOWORLD">LDOWOHERLL</h1>
+  </body>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Mono:wght@100..900&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+    body {
+      background-color: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    h1 {
+      font-family: "Noto Sans Mono", monospace;
+      text-transform: uppercase;
+      font-size: 56px;
+      color: white;
+    }
+  </style>
+  <script>
+    const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    document.querySelector("h1").onmouseover = (e) => {
+      const text = e.target.innerHTML;
+      const originText = e.target.dataset.value;
+      let i = 0;
+
+      const interval = setInterval(() => {
+        e.target.innerHTML = text
+          .split("")
+          .map((letter, index) => {
+            if (index < i) {
+              return originText[index];
+            }
+            return letters[Math.floor(Math.random() * letters.length)];
+          })
+          .join("");
+
+        if (i > originText.length) clearInterval(interval);
+
+        i += 1 / 3;
+      }, 30);
+    };
+  </script>
+</html>
